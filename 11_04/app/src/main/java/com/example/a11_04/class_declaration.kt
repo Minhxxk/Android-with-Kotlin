@@ -51,20 +51,79 @@ package com.example.a11_04
 //}
 
 //생성자의 매개변수를 다른 함수에서 사용하는 예
-class User(name: String, count: Int){
-    //클래스 멤버 변수 선언
-    var name: String
-    var count: Int
-    init {
-        // 클래스의 멤버 변수에 생성자 매개변수값 대입
-        this.name = name
-        this.count = count
+//class User(name: String, count: Int){
+//    //클래스 멤버 변수 선언
+//    var name: String
+//    var count: Int
+//    init {
+//        // 클래스의 멤버 변수에 생성자 매개변수값 대입
+//        this.name = name
+//        this.count = count
+//    }
+//    fun someFun(){
+//        println("name : $name, count: $count")
+//    }
+//}
+//fun main(){
+//    val user = User("minhxxk", 25)
+//    user.someFun()
+//}
+
+//생성자의 매개변수를 클래스의 멤버 변수로 선언하는 방법
+//class User(val name: String, val count: Int){
+//    fun someFun(){
+//        println("name : $name, count : $count")
+//    }
+//}
+//fun main(){
+//    val user = User("minhxxk", 25)
+//    user.someFun()
+//}
+
+//원래 함수는 매개변수를 선언할 때 var나 val 키워드를 추가할 수 없다. 그런데 주 생성자에서만 유일하게 var나 val 키워드로 매개변수를 선언할 수 있다.
+//이렇게 사용하면 클래스의 멤버 변수가 됩니다.
+
+
+//보조 생성자
+//클래스의 본문에 constructor 키워드로 선언하는 함수
+
+//보조 생성자 선언
+//class User{
+//    constructor(name: String){
+//        println("보조 생성자1")
+//    }
+//    constructor(name: String, old:Int){
+//        println("보조 생성자2")
+//    }
+//}
+//fun main(){
+//    val user1 = User("minhxxk")
+//    val user2 = User("minhxxk", 25)
+//}
+
+//보조 생성자에 주 생성자 연결
+//코틀린의 생성자는 주 생성자와 보조 생성자로 나뉜다.
+// 클래스를 선언할 때 둘 중 하나만 선언하면 문제가 없지만, 만약 주 생성자와 보조 생성자를 모두 선언한다면 반드시 생성자끼리 연결해주어야 함!!
+
+//보조 생성자에서 주 생성자 호출 예
+//class User(name: String){
+//    constructor(name: String, count:Int): this(name){
+//        println("보조 생성자")
+//    }
+//}
+//fun main(){
+//    val user = User("minhxxk", 25)
+//}
+
+//보조 생성자가 여럿일 때 생성자 연결
+class User(name: String){
+    constructor(name: String, count: Int): this(name){
+        println("주생성자 호출")
     }
-    fun someFun(){
-        println("name : $name, count: $count")
+    constructor(name: String, count: Int, email: String): this(name, count){
+        println("보조 생성자1 호출")
     }
 }
 fun main(){
-    val user = User("minhxxk", 25)
-    user.someFun()
+    val user = User("minhxxk", 25, "tactics4421@gmail.com")
 }
