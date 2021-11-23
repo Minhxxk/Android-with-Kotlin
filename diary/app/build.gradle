@@ -7,7 +7,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.a11_11"
+        applicationId "com.example.diary"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -30,7 +30,7 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures{
-        viewBinding true
+        viewBinding = true
     }
 }
 

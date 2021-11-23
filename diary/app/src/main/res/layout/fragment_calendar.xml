@@ -7,16 +7,19 @@
     tools:context=".CalendarFragment"
     android:orientation="vertical">
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+    <!--<com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/materialCalendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:mcv_selectionColor="#d2d2d2" />
+        app:mcv_selectionColor="#d2d2d2" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/recyclerView"
+        android:scrollbars="vertical"
         android:orientation="vertical"
+        android:background="#ADD0E8"
+        app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/recycler_item"/>
 </LinearLayout>

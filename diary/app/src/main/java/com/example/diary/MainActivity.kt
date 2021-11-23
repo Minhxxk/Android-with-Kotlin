@@ -21,15 +21,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId){
         R.id.menu1 -> {
-            Toast.makeText(this, "menu1 클릭", Toast.LENGTH_SHORT).show()
+            setTodayFragment()
             true
         }
         R.id.menu2 -> {
-            Toast.makeText(this, "menu2 클릭", Toast.LENGTH_SHORT).show()
+            setCalendarFragment()
             true
         }
         R.id.menu3 -> {
-            Toast.makeText(this, "menu3 클릭", Toast.LENGTH_SHORT).show()
+            setSettingFragment()
             true
         }
         else -> super.onOptionsItemSelected(item)
@@ -68,6 +68,4 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.framelayout, SettingFragment())
         transaction.commit()
     }
-
-
 }

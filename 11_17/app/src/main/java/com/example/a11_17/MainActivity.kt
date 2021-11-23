@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     //데이터 목록
-    val userList = arrayListOf<dataVo>(
+      val userList = arrayListOf<dataVo>(
         dataVo("userImg1", "이민혁", "01054864421"),
         dataVo("userImg2", "이민석", "01052754421"),
         dataVo("userImg3", "정선채", "01071900250")
