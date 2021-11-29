@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
+        android:paddingLeft="10dp"
         android:text="오늘 일기를 작성해 보아요!!"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -37,6 +37,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/tv_title"
             android:hint="오늘은..."
+            android:id="@+id/et_Text"
             android:gravity="start"
             android:textSize="14dp" />
     </LinearLayout>

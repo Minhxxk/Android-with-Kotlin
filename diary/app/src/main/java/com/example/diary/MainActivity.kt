@@ -6,11 +6,13 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.diary.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+    private var title: String? = null
 
     //메뉴 구성 함수
     //액티비티 코드에 menu.xml 적용
@@ -37,11 +39,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val transaction = supportFragmentManager.beginTransaction()
-            .replace(R.id.framelayout, TodayFragment())
-        transaction.commit()
+
+        setTodayFragment()
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTodayFragment()
         binding.tab1.setOnClickListener {
             setTodayFragment()
         }
@@ -67,5 +70,12 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
             .replace(R.id.framelayout, SettingFragment())
         transaction.commit()
+    }
+    //프래그먼트에 데이터 전달하기
+    fun setDataAtFragment(fragment: Fragment, title: String){
+        val bundle = Bundle()
+        bundle.putString("title", title)
+        Log.i("minhxxk", "MainActivity : $title")
+        fragment.arguments = bundle
     }
 }
