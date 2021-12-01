@@ -1,5 +1,6 @@
 package com.example.diary
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,17 +9,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.os.bundleOf
 import com.example.diary.databinding.FragmentTodayBinding
 import java.time.LocalDate
 import java.util.*
 
 class TodayFragment : Fragment() {
 
+    lateinit var mainActivity: MainActivity
     lateinit var tvDate: TextView
     lateinit var etText: EditText
     lateinit var ivSave: ImageView
@@ -41,19 +41,26 @@ class TodayFragment : Fragment() {
         ivSave.setOnClickListener{
             val todayText = etText.text.toString()
             etText.text.clear()
-//            Log.i("minhxxk", "$todayText")
-            //데이터 가지고 이동
-           val intent = Intent(this.context, CalendarFragment::class.java)
-            intent.apply{
-                this.putExtra("date" , todayDate)
-                this.putExtra("today", todayText)
-            }
-            // 이동한 activity에서 추후 받아올 데이터가 없는
-            // 단순 데이터 전달 및 이동의 경우
-            // startActivity(intent)
-            this.context?.startActivity(intent)
+
+            val calendarFragment = mainActivity.calendarFragment
+            var bundle = Bundle()
+            bundle.putString("TodayText", todayText)
+            bundle.putString("Today", todayDate.toString())
+            Log.i("minhxxk", "$todayText")
+            Toast.makeText(context, "오늘의 일기가 작성되었습니다.", Toast.LENGTH_SHORT).show()
+            //fragment의 arguments에 데이터를 담은 bundle을 넘겨줌
+            calendarFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction()
+                .replace(R.id.framelayout, calendarFragment)
+                .commit()
         }
 
         return rootView
     }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
+
+
 }

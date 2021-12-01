@@ -18,14 +18,15 @@ class CalendarFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
     lateinit var mAdapter: ItemAdapter
-    lateinit var title: String
-    val returnIntent = Intent()
+    lateinit var todayText: String
+    lateinit var todayDate: String
 
 
     //Fragment가 생성될 때 호출되는 부분
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        title = returnIntent.getStringExtra("today").toString()
+        todayText = arguments?.getString("TodayText").toString()
+        todayDate = arguments?.getString("Today").toString()
     }
 
     //onCreate 후에 화면을 구성할 때 호출되는 부분
@@ -42,11 +43,10 @@ class CalendarFragment : Fragment() {
     private fun initRecycler() {
         mAdapter = ItemAdapter(requireContext(), diaryList as ArrayList<ItemData>)
         recyclerView.adapter = mAdapter
-
         diaryList.apply {
-            add(ItemData("$title", "1"))
-
+            add(ItemData("$todayText", "$todayDate"))
             mAdapter.notifyDataSetChanged()
         }
+
     }
 }

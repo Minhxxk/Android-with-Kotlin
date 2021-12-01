@@ -12,7 +12,10 @@ import com.example.diary.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-    private var title: String? = null
+    val todayFragment = TodayFragment()
+    val calendarFragment = CalendarFragment()
+    val settingFragment = SettingFragment()
+
 
     //메뉴 구성 함수
     //액티비티 코드에 menu.xml 적용
@@ -58,24 +61,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun setTodayFragment() {
         val transaction = supportFragmentManager.beginTransaction()
-            .replace(R.id.framelayout, TodayFragment())
+            .replace(R.id.framelayout, todayFragment)
         transaction.commit()
     }
     private fun setCalendarFragment() {
         val transaction = supportFragmentManager.beginTransaction()
-            .replace(R.id.framelayout, CalendarFragment())
+            .replace(R.id.framelayout, calendarFragment)
         transaction.commit()
     }
     private fun setSettingFragment() {
         val transaction = supportFragmentManager.beginTransaction()
-            .replace(R.id.framelayout, SettingFragment())
+            .replace(R.id.framelayout, settingFragment)
         transaction.commit()
     }
-    //프래그먼트에 데이터 전달하기
-    fun setDataAtFragment(fragment: Fragment, title: String){
-        val bundle = Bundle()
-        bundle.putString("title", title)
-        Log.i("minhxxk", "MainActivity : $title")
-        fragment.arguments = bundle
-    }
+
 }

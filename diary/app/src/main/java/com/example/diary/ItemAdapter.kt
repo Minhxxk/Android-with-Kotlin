@@ -18,6 +18,7 @@ class ItemAdapter(private val context: Context, private val dataList: ArrayList<
     }
 
     override fun getItemCount(): Int {
+        Log.i("minhxxk", "${dataList.size}")
         return dataList.size
     }
 
